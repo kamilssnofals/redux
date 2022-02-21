@@ -15,11 +15,17 @@
 
 .favorites__list {
     margin-bottom: 24px;
+    
+}
+
+.favorites__list li {
+    display: flex;
+    justify-content: space-between;
 }
 
 .favorites__save {
     border: none;
-    background-color: #496DDB;
+    background: -webkit-linear-gradient(90deg, #c4003e,#65ea5b,#7DD9F2);/* Chrome 10-25, Safari 5.1-6 */                          background: linear-gradient(90deg, #c4003e,#65ea5b,#7DD9F2);/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     padding: 10px 15px;
     color: #FFEEDB;
     font-size: 14px;

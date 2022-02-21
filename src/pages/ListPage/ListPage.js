@@ -3,13 +3,20 @@ import './ListPage.css';
 
 class ListPage extends Component {
     state = {
-        movies: [
-            { title: 'The Godfather', year: 1972, imdbID: 'tt0068646' }
-        ]
+        movies: [],
+        title: "",
     }
     componentDidMount() {
-        const id = this.props.match.params;
+        const id = this.props.match.params.id;
         console.log(id);
+        fetch(`https://acb-api.algoritmika.org/api/movies/list/${id}`)
+        .then(response => response.json())
+        .then(data => {
+            this.setState({movies:data.movies,title:data.title})
+        })
+        .catch((err) => {
+            console.error('error-list-page', err)
+        })
         // TODO: запрос к сервер на получение списка
         // TODO: запросы к серверу по всем imdbID
     }
@@ -21,7 +28,7 @@ class ListPage extends Component {
                     {this.state.movies.map((item) => {
                         return (
                             <li key={item.imdbID}>
-                                <a href="https://www.imdb.com/title/tt0068646/" target="_blank">{item.title} ({item.year})</a>
+                                <a href={`https://www.imdb.com/title/${item.id}`} target="_blank">{item.title} ({item.year})</a>
                             </li>
                         );
                     })}

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import store from '../redux/store';
 import './SearchBox.css';
 
 class SearchBox extends Component {
@@ -10,7 +11,14 @@ class SearchBox extends Component {
     }
     searchBoxSubmitHandler = (e) => {
         e.preventDefault();
+        store.dispatch({
+            type: 'SEARCH',
+            payload: {
+                searchLine: this.state.searchLine
+            }
+        });
     }
+   
     render() {
         const { searchLine } = this.state;
 
